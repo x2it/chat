@@ -5,6 +5,7 @@ baseurl: ""
 url: "https://w3b.pub"
 github_username: x2it
 markdown: kramdown
+future: true
 theme: minima
 plugins:
   - jekyll-feed
