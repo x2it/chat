@@ -75,13 +75,20 @@ h1, .site-title, .blog-title {
 .nav-tabs {
     display: flex;
     justify-content: center;
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;        /* 允许换行，避免左滑右滑 */
     gap: 0.5rem;
     padding-bottom: 0.5rem;
     -webkit-overflow-scrolling: touch;
 }
-@media (max-width: 768px) { .nav-tabs { justify-content: flex-start; } }
+@media (max-width: 768px) {
+    .nav-tabs {
+        justify-content: flex-start;  /* 窄屏左对齐更紧凑 */
+    }
+    .nav-tab {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+}
 .nav-tab {
     color: var(--text-primary);
     text-decoration: none;
@@ -763,7 +770,13 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
     border-radius: 12px;
     border: 1px solid var(--gray-border);
 }
-@media (max-width: 480px) { .footer-links { gap: 1rem; padding: 1.2rem; } }
+@media (max-width: 480px) { 
+    .footer-links { gap: 1rem; padding: 1.2rem; } 
+    .footer-link {
+        min-width: 80px;        /* 减小最小宽度，适应窄屏 */
+        padding: 0.5rem 0.8rem;
+    }
+}
 .footer-link {
     color: var(--text-primary);
     text-decoration: none;
@@ -782,7 +795,9 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
     background: white;
     border: 1px solid var(--gray-border);
 }
-@media (max-width: 480px) { .footer-link { font-size: 0.95rem; padding: 0.5rem 1rem; min-width: 90px; flex: 1; } }
+@media (max-width: 480px) { 
+    .footer-link { font-size: 0.95rem; padding: 0.5rem 1rem; min-width: 90px; flex: 1; }
+}
 .footer-link:hover {
     color: var(--primary-color);
     background: rgba(210,35,42,0.05);
