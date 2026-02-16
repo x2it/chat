@@ -1,0 +1,10 @@
+title: Davi iHome Studio
+email: x.dw@qq.com
+description: 理会 · 践行 - 知行合一的现代探索
+baseurl: ""
+url: "https://w3b.pub"
+github_username: x2it
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
