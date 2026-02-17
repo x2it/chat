@@ -37,6 +37,47 @@ header h1 {
 header p {
     font-size: 1.1rem;
     color: #666;
+    margin-bottom: 30px;
+}
+
+/* 分类导航样式 */
+.category-nav {
+    margin-top: 20px;
+}
+
+.category-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.category-nav li {
+    margin: 0;
+}
+
+.category-nav a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #666;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.category-nav a:hover {
+    background-color: #e0e0e0;
+    color: #333;
+}
+
+.category-nav a.active {
+    background-color: #3498db;
+    color: #fff;
 }
 
 /* 主要内容样式 */
@@ -139,6 +180,38 @@ footer p {
     .post-title {
         font-size: 1.5rem;
     }
+
+    /* 移动端导航样式 */
+    .category-nav ul {
+        gap: 10px;
+    }
+
+    .category-nav a {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    .category-nav ul {
+        justify-content: center;
+    }
+
+    .post-item {
+        padding: 15px;
+    }
+
+    .post-title {
+        font-size: 1.3rem;
+    }
 }
 
 /* 内页样式 */
@@ -177,3 +250,41 @@ footer p {
     padding: 60px 0;
     color: #666;
 }
+
+/* 文章分类标签 */
+.post-category {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #f0f0f0;
+    color: #666;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+/* 平滑滚动 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.post-item {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+.post-item:nth-child(1) { animation-delay: 0.1s; }
+.post-item:nth-child(2) { animation-delay: 0.2s; }
+.post-item:nth-child(3) { animation-delay: 0.3s; }
+.post-item:nth-child(4) { animation-delay: 0.4s; }
+.post-item:nth-child(5) { animation-delay: 0.5s; }
