@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Davi的个人思考空间 - 记录在AI与Web3时代的观察、实践与反思">
+    <title>文章详情 - Davi的践行笔记</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .article-content h1 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        .article-meta {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-border);
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .article-content h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+        .article-content h3 {
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+        }
+        .article-content p {
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+        }
+        .article-content ul,
+        .article-content ol {
+            margin-bottom: 1.2rem;
+            padding-left: 1.5rem;
+        }
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        .article-content blockquote {
+            border-left: 4px solid var(--primary-color);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-secondary);
+            font-style: italic;
+        }
+        .article-content code {
+            background: var(--gray-light);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .article-content pre {
+            background: var(--gray-light);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+        .article-content pre code {
+            background: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="blog-title">Davi的践行笔记</h1>
+        <p class="blog-subtitle">记录在AI与Web3时代的观察、实践与反思</p>
+        
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <a href="index.html#about" class="nav-tab">关于我</a>
+                <a href="index.html#thinking" class="nav-tab active">近期思考</a>
+                <a href="index.html#projects" class="nav-tab">在做的事</a>
+                <a href="index.html#contact" class="nav-tab">联系交流</a>
+            </div>
+        </div>
+    </header>
+
+    <section id="article-detail">
+        <div class="article-content" id="article-container">
+            <!-- 文章内容将在这里动态生成 -->
+            <p style="text-align: center; color: var(--text-secondary); padding: 2rem;">加载中...</p>
+        </div>
+    </section>
+
+    <div class="footer-links">
+        <a href="index.html" class="footer-link" title="返回首页">首页</a>
+        <span class="link-divider">|</span>
+        <a href="index.html#thinking" class="footer-link" title="浏览文章">文章</a>
+    </div>
+
+    <footer>
+        <p>在变化中寻找不变，在繁杂中保持简单。</p>
+        <p class="copyright">© 2026 Davi iHome Studio</p>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTop" title="返回顶部">↑</div>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取URL参数中的文章ID
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (!articleId) {
+                document.getElementById('article-container').innerHTML = `
+                    <div style="text-align: center; color: var(--text-secondary); padding: 4rem;">
+                        <h2>文章不存在</h2>
+                        <p>请提供有效的文章ID</p>
+                        <a href="index.html" class="footer-link" style="display: inline-block; margin-top: 1rem;">返回首页</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // 加载文章数据
+            async function loadArticle() {
+                const container = document.getElementById('article-container');
+
+                try {
+                    // 检测是否在本地文件协议下
+                    const isLocalFile = window.location.protocol === 'file:';
+                    
+                    let article = null;
+                    
+                    if (isLocalFile) {
+                        // 本地模式：使用模拟数据
+                        console.log('本地文件模式，使用模拟数据');
+                        const mockArticles = [
+                            {
+                                id: '1',
+                                fields: {
+                                    分类: '博客',
+                                    标题: 'AI如何真正帮助创作',
+                                    发布时间: '2026-02-18',
+                                    内容: '# AI如何真正帮助创作\n\n在当前的技术环境中，AI已经成为了创作过程中的重要工具。\n\n## 创作辅助\n\nAI可以帮助我们：\n- 生成创意灵感\n- 辅助修改和编辑\n- 提供相关资料\n\n## 不要替代创作\n\n重要的是，AI应该是创作的辅助工具，而不是替代创作者的角色。' 
+                                }
+                            },
+                            {
+                                id: '2',
+                                fields: {
+                                    分类: '博客',
+                                    标题: '深度思考的重要性',
+                                    发布时间: '2026-02-17',
+                                    内容: '# 深度思考的重要性\n\n在信息爆炸的时代，深度思考变得越来越重要。\n\n## 信息过载\n\n我们每天都会接收到大量的信息，如何从中筛选出有价值的内容，需要深度思考。\n\n## 独立判断\n\n深度思考帮助我们形成独立的判断，不被外界的噪音所干扰。' 
+                                }
+                            }
+                        ];
+                        
+                        // 找到ID匹配的文章
+                        article = mockArticles.find(item => {
+                            return item.id === articleId;
+                        });
+                    } else {
+                        // 在线模式：从 Cloudflare Worker 获取数据
+                        const response = await fetch('https://chat.x-dw.workers.dev');
+                        
+                        // 检查响应状态
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        
+                        const data = await response.json();
+                        
+                        // 验证数据格式
+                        if (!Array.isArray(data)) {
+                            throw new Error('数据格式错误：期望数组');
+                        }
+                        
+                        // 找到ID匹配的文章
+                        article = data.find(item => {
+                            return item.id === articleId || item.record_id === articleId;
+                        });
+                    }
+                    
+                    if (!article) {
+                        container.innerHTML = `
+                            <div style="text-align: center; color: var(--text-secondary); padding: 4rem;">
+                                <h2>文章不存在</h2>
+                                <p>未找到ID为 ${articleId} 的文章</p>
+                                <a href="index.html" class="footer-link" style="display: inline-block; margin-top: 1rem;">返回首页</a>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
+                    const fields = article.fields;
+                    
+                    // 设置页面标题
+                    document.title = `${fields.标题 || '无标题'} - Davi的践行笔记`;
+                    
+                    // 渲染文章内容
+                    const contentHtml = fields.内容 ? marked.parse(fields.内容) : '无内容';
+                    
+                    container.innerHTML = `
+                        <h1>${fields.标题 || '无标题'}</h1>
+                        <div class="article-meta">
+                            <span>发布时间：${formatDate(fields.发布时间)}</span>
+                            ${fields.分类 ? `<span style="margin-left: 1.5rem;">分类：${fields.分类}</span>` : ''}
+                        </div>
+                        ${fields.封面 ? `<img src="${fields.封面}" alt="${fields.标题 || '封面'}" class="article-cover">` : ''}
+                        <div class="article-body">
+                            ${contentHtml}
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error('加载文章失败:', error);
+                    container.innerHTML = `
+                        <div style="text-align: center; color: var(--text-secondary); padding: 4rem;">
+                            <h2>加载失败</h2>
+                            <p>请稍后重试</p>
+                            <p style="font-size: 0.9rem; margin-top: 0.5rem;">错误信息: ${error.message}</p>
+                            <a href="index.html" class="footer-link" style="display: inline-block; margin-top: 1rem;">返回首页</a>
+                        </div>
+                    `;
+                }
+            }
+
+            // 格式化日期
+            function formatDate(dateString) {
+                if (!dateString) return '未知日期';
+                
+                const date = new Date(dateString);
+                
+                // 检查日期是否有效
+                if (isNaN(date.getTime())) {
+                    return '日期格式错误';
+                }
+                
+                const year = date.getFullYear();
+                const month = (date.getMonth() + 1).toString().padStart(2, '0');
+                const day = date.getDate().toString().padStart(2, '0');
+                
+                return `${year}-${month}-${day}`;
+            }
+
+            // 初始化加载
+            loadArticle();
+        });
+    </script>
+</body>
+</html>
