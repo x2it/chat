@@ -347,7 +347,7 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
 
 /* 关于我 (blog) */
 .about-me {
-    text-align: center;
+    text-align: left;
     max-width: 700px;
     margin: 0 auto 2rem;
 }
@@ -361,7 +361,7 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
     justify-content: center;
     font-size: 2rem;
     color: var(--primary-color);
-    margin: 0 auto 1.5rem;
+    margin: 0 0 1.5rem;
     border: 3px solid white;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     font-weight: bold;
