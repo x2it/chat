@@ -25,8 +25,8 @@ class FeishuTableManager {
             this.setTheme(savedTheme);
             themeSelect.value = savedTheme;
         } else {
-            // 默认使用默认主题
-            this.setTheme('default');
+            // 默认使用跟随系统
+            this.setTheme('auto');
         }
         
         // 绑定主题切换事件
@@ -57,7 +57,14 @@ class FeishuTableManager {
     // 更新自动主题
     updateAutoTheme() {
         const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        document.body.className = isDarkMode ? 'theme-dark' : 'theme-default';
+        // 移除所有主题类
+        document.body.className = '';
+        // 根据系统设置应用相应主题
+        if (isDarkMode) {
+            document.body.className = 'theme-dark';
+        } else {
+            document.body.className = 'theme-default';
+        }
     }
 
     // 绑定分类导航事件
