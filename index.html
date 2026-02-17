@@ -13,7 +13,7 @@
 <body>
     <header>
         <h1 class="site-title">理会 · 践行</h1>
-        <p class="site-subtitle">知是行之始，行是知之成。</p>
+        <p class="site-subtitle">知是行之始，行是知之成。一个关于认知与行动的交互探索。</p>
     </header>
 
     <section id="particle-section">
@@ -87,7 +87,7 @@
         <span class="link-divider">|</span>
         <a href="blog.html" class="footer-link" title="访问个人博客">理会</a>
         <span class="link-divider">|</span>
-        <a href="works.html" class="footer-link" title="浏览作品集">践行</a>
+        <a href="works.html" class="footer-link" title="浏览内容目录">践行</a>
     </div>
 
     <footer>
@@ -95,9 +95,12 @@
         <p class="copyright">© 2026 Davi iHome Studio - 理会 · 践行</p>
     </footer>
 
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="backToTop" title="返回顶部">↑</div>
+    <script src="/assets/js/main.js"></script>
+
     <script>
         (function() {
-            // 粒子动画代码（原样保留，与之前相同）
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
             let particles = [];
@@ -251,7 +254,6 @@
             
             startParticles();
             
-            // 平衡器逻辑
             const knowledgeSlider = document.getElementById('knowledgeSlider');
             const actionSlider = document.getElementById('actionSlider');
             const knowledgeValue = document.getElementById('knowledgeValue');
@@ -284,7 +286,6 @@
             actionSlider.addEventListener('input', updateBalance);
             updateBalance();
             
-            // 移动端优化
             document.addEventListener('touchstart', function() {}, {passive: true});
             let lastTouchEnd = 0;
             document.addEventListener('touchend', function(event) {
