@@ -75,9 +75,9 @@
     </section>
 
     <div class="footer-links">
-        <a href="https://w3b.pub/blog.html" class="footer-link" title="访问个人博客">理会</a>
+        <a href="https://w3b.pub" class="footer-link" title="访问主站">理会</a>
         <span class="link-divider">|</span>
-        <a href="https://w3b.pub" class="footer-link" title="浏览内容目录">践行</a>
+        <a href="#top" class="footer-link" id="backToTopLink" title="返回顶部">践行</a>
     </div>
 
     <footer>
@@ -168,6 +168,18 @@
                             }, 1500);
                         });
                     }
+                });
+            }
+            
+            // 为返回顶部链接添加点击事件
+            const backToTopLink = document.getElementById('backToTopLink');
+            if (backToTopLink) {
+                backToTopLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             }
         });
