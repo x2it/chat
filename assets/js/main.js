@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // 获取并渲染数据
     fetch(WORKER_URL)
+
         .then(response => {
 
             if (!response.ok) {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
 
         })
+
         .then(data => {
 
             console.log('从 Worker 获取到原始数据:', data);
@@ -65,10 +67,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 内容预览：去除 Markdown 标记，取前100字符
                 const rawContent = fields.内容 || '';
                 const plainText = rawContent
+
                     .replace(/!\[.*?\]\(.*?\)/g, '')   // 移除图片
+
                     .replace(/\[.*?\]\(.*?\)/g, '')   // 移除链接
+
                     .replace(/[#*`>~\-+]/g, '')       // 移除标记符号
+
                     .replace(/\n+/g, ' ')             // 换行变空格
+
                     .trim();
                 const preview = plainText.length > 100 ? plainText.substring(0, 100) + '...' : plainText;
 
@@ -91,15 +98,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // 构建卡片 HTML
                 const card = document.createElement('div');
-                card.className = 'article-card';  // 使用现有的卡片类名
+                card.className = 'blog-card';  // 这里使用你现有的卡片类名，如果不同请修改
                 card.innerHTML = `
+
                     ${imgHtml}
+
                     <div style="padding:1rem;">
+
                         <h3 style="margin:0 0 0.5rem; font-size:1.25rem;">${fields.标题 || '无标题'}</h3>
+
                         <div style="color:var(--text-light); font-size:0.85rem; margin-bottom:0.5rem;">${dateStr}</div>
+
                         <p style="color:var(--text-secondary); line-height:1.5; margin-bottom:1rem;">${preview}</p>
+
                         <a href="article.html?id=${id}" style="color:var(--accent-color); text-decoration:none; font-weight:500;">继续阅读 →</a>
+
                     </div>
+
                 `;
 
                 container.appendChild(card);
@@ -107,6 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
         })
+
         .catch(error => {
 
             console.error('获取数据失败:', error);
