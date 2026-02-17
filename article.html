@@ -217,13 +217,19 @@
                     // 渲染文章内容
                     const contentHtml = fields.内容 ? marked.parse(fields.内容) : '无内容';
                     
+                    // 处理封面图片
+                    let coverImage = '';
+                    if (fields.封面 && Array.isArray(fields.封面) && fields.封面.length > 0 && fields.封面[0].url) {
+                        coverImage = `<img src="${fields.封面[0].url}" alt="${fields.标题 || '封面'}" style="max-width:100%; height:auto; margin-bottom: 1.5rem;">`;
+                    }
+                    
                     container.innerHTML = `
+                        ${coverImage}
                         <h1>${fields.标题 || '无标题'}</h1>
                         <div class="article-meta">
                             <span>发布时间：${formatDate(fields.发布时间)}</span>
                             ${fields.分类 ? `<span style="margin-left: 1.5rem;">分类：${fields.分类}</span>` : ''}
                         </div>
-                        ${fields.封面 ? `<img src="${fields.封面}" alt="${fields.标题 || '封面'}" class="article-cover">` : ''}
                         <div class="article-body">
                             ${contentHtml}
                         </div>

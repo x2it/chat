@@ -271,24 +271,16 @@
                         const article = document.createElement('article');
                         article.className = 'article-card';
                         
+                        // 处理封面图片
+                        let coverImage = '';
+                        if (post.fields.封面 && Array.isArray(post.fields.封面) && post.fields.封面.length > 0 && post.fields.封面[0].url) {
+                            coverImage = `<img src="${post.fields.封面[0].url}" style="width:100%; max-height:200px; object-fit:cover; border-radius:8px; margin-bottom:1rem;">`;
+                        }
+                        
                         // 截取前100字作为内容预览，去除Markdown标记
                         let contentPreview = post.fields.内容 || '无内容';
                         // 移除Markdown标记
-                        contentPreview = contentPreview
-                            .replace(/#{1,6}\s/g, '') // 移除标题
-                            .replace(/\*\*([^*]+)\*\*/g, '$1') // 移除粗体
-                            .replace(/\*([^*]+)\*/g, '$1') // 移除斜体
-                            .replace(/`([^`]+)`/g, '$1') // 移除行内代码
-                            .replace(/!\[(.*?)\]\((.*?)\)/g, '') // 移除图片
-                            .replace(/\[(.*?)\]\((.*?)\)/g, '$1') // 移除链接
-                            .replace(/```[\s\S]*?```/g, '') // 移除代码块
-                            .replace(/```/g, '') // 移除单独的代码块标记
-                            .replace(/^-\s/gm, '') // 移除无序列表
-                            .replace(/^\d+\.\s/gm, '') // 移除有序列表
-                            .replace(/^>\s/gm, '') // 移除引用
-                            .replace(/\n/g, ' ') // 将换行符替换为空格
-                            .trim(); // 去除首尾空格
-                        contentPreview = contentPreview.substring(0, 100) + '...';
+                        contentPreview = contentPreview.replace(/[#*`\[\]()#]|!\[.*?\]\(.*?\)/g, '').substring(0, 100) + '...';
                         
                         // 获取文章ID，优先使用id，否则使用record_id
                         const articleId = post.id || post.record_id;
@@ -296,6 +288,7 @@
                         const postLink = articleId ? `article.html?id=${articleId}` : '#';
                         
                         article.innerHTML = `
+                            ${coverImage}
                             <div class="article-header">
                                 <span class="article-category">${post.fields.分类 || '未分类'}</span>
                                 <h3 class="article-title">${post.fields.标题 || '无标题'}</h3>
