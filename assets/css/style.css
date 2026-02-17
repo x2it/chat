@@ -66,7 +66,7 @@ h1, .site-title, .blog-title {
     line-height: 1.5;
 }
 
-/* 导航标签 - 强制一行显示，不换行，不滑动 */
+/* 导航标签 - 通用 */
 .nav-container {
     max-width: 800px;
     margin: 0 auto;
@@ -75,26 +75,10 @@ h1, .site-title, .blog-title {
 .nav-tabs {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;        /* 默认允许换行，但在窄屏通过媒体查询覆盖为 nowrap */
+    flex-wrap: wrap;
     gap: 0.5rem;
     padding-bottom: 0.5rem;
     -webkit-overflow-scrolling: touch;
-}
-@media (max-width: 600px) {
-    .nav-tabs {
-        flex-wrap: nowrap;           /* 禁止换行 */
-        gap: 0.2rem;                 /* 减小间隙 */
-        justify-content: space-between; /* 等宽分布 */
-    }
-    .nav-tab {
-        padding: 0.4rem 0.2rem;      /* 大幅减小内边距 */
-        font-size: 0.75rem;          /* 减小字号 */
-        min-width: 0;                 /* 允许缩小 */
-        flex: 1 1 0;                  /* 等宽 */
-        white-space: nowrap;          /* 禁止文字换行 */
-        overflow: hidden;             /* 溢出隐藏 */
-        text-overflow: ellipsis;      /* 长文字显示省略号 */
-    }
 }
 .nav-tab {
     color: var(--text-primary);
@@ -114,7 +98,6 @@ h1, .site-title, .blog-title {
     white-space: nowrap;
     flex-shrink: 0;
 }
-@media (max-width: 480px) { .nav-tab { padding: 0.5rem 1rem; font-size: 0.9rem; min-height: 40px; } }
 .nav-tab:hover {
     color: var(--primary-color);
     background: rgba(210,35,42,0.05);
@@ -126,6 +109,24 @@ h1, .site-title, .blog-title {
     color: var(--primary-color);
     background: rgba(210,35,42,0.1);
     border-color: rgba(210,35,42,0.3);
+}
+
+/* 窄屏导航优化 - 强制一行显示，等宽，溢出省略 */
+@media (max-width: 600px) {
+    .nav-tabs {
+        flex-wrap: nowrap;           /* 强制不换行 */
+        gap: 0.1rem;                 /* 间隙最小化 */
+        justify-content: space-between;
+    }
+    .nav-tab {
+        padding: 0.3rem 0.1rem;      /* 内边距极致压缩 */
+        font-size: 0.7rem;            /* 字体缩小到约11px */
+        min-width: 0;                 /* 允许收缩 */
+        flex: 1 1 0;                  /* 等宽分配 */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;      /* 长文字显示省略号 */
+    }
 }
 
 /* 章节 */
@@ -764,34 +765,18 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
 .recommend-title { font-size: 1.1rem; color: var(--dark-color); margin-bottom: 0.8rem; }
 .recommend-text { color: var(--text-secondary); line-height: 1.6; font-size: 0.95rem; margin-bottom: 1rem; }
 
-/* 底部导航 (通用) - 强制一行显示，不换行，不滑动 */
+/* 底部导航 (通用) */
 .footer-links {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;        /* 默认允许换行，窄屏覆盖为 nowrap */
+    flex-wrap: wrap;
     gap: 1.5rem;
     margin: 3rem 0 2rem;
     padding: 1.5rem;
     background: var(--gray-light);
     border-radius: 12px;
     border: 1px solid var(--gray-border);
-}
-@media (max-width: 600px) {
-    .footer-links {
-        flex-wrap: nowrap;           /* 禁止换行 */
-        gap: 0.2rem;                 /* 减小间隙 */
-        padding: 1rem 0.5rem;
-    }
-    .footer-link {
-        padding: 0.4rem 0.2rem;      /* 减小内边距 */
-        font-size: 0.75rem;          /* 减小字号 */
-        min-width: 0;                 /* 允许缩小 */
-        flex: 1 1 0;                  /* 等宽 */
-        white-space: nowrap;          /* 禁止文字换行 */
-        overflow: hidden;             /* 溢出隐藏 */
-        text-overflow: ellipsis;      /* 长文字显示省略号 */
-    }
 }
 .footer-link {
     color: var(--text-primary);
@@ -811,9 +796,6 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
     background: white;
     border: 1px solid var(--gray-border);
 }
-@media (max-width: 480px) { 
-    .footer-link { font-size: 0.95rem; padding: 0.5rem 1rem; min-width: 90px; flex: 1; }
-}
 .footer-link:hover {
     color: var(--primary-color);
     background: rgba(210,35,42,0.05);
@@ -827,7 +809,27 @@ input[type=range]::-webkit-slider-thumb:active { background: var(--primary-color
     font-weight: 300;
     font-size: 1.2rem;
 }
-@media (max-width: 480px) { .link-divider { display: none; } }
+
+/* 窄屏底部导航优化 - 强制一行显示，等宽，溢出省略 */
+@media (max-width: 600px) {
+    .footer-links {
+        flex-wrap: nowrap;           /* 强制不换行 */
+        gap: 0.1rem;                 /* 间隙最小化 */
+        padding: 0.8rem 0.3rem;      /* 减少内边距 */
+    }
+    .footer-link {
+        padding: 0.3rem 0.1rem;      /* 按钮内边距极致压缩 */
+        font-size: 0.7rem;            /* 字体缩小到约11px */
+        min-width: 0;                 /* 允许收缩 */
+        flex: 1 1 0;                  /* 等宽分配 */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;      /* 长文字显示省略号 */
+    }
+    .link-divider {
+        display: none;                 /* 隐藏分隔符，腾出空间 */
+    }
+}
 
 footer {
     text-align: center;
