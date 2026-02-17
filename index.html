@@ -251,11 +251,10 @@
                             return item && item.fields && item.fields.分类 === '博客';
                         });
                         
-                        // 按发布时间倒序排列
+                        // 按发布时间倒序排列（最新的在前）
                         blogPosts.sort((a, b) => {
-                            const dateA = a.fields.发布时间 ? new Date(a.fields.发布时间) : new Date(0);
-                            const dateB = b.fields.发布时间 ? new Date(b.fields.发布时间) : new Date(0);
-                            return dateB - dateA;
+                            // 直接使用时间戳进行比较，确保正确排序
+                            return (b.fields.发布时间 || 0) - (a.fields.发布时间 || 0);
                         });
                     }
                     
