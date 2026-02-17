@@ -18,8 +18,8 @@
         <div class="nav-container">
             <div class="nav-tabs">
                 <a href="#about" class="nav-tab active">关于我</a>
-                <a href="#thinking" class="nav-tab">近期思考</a>
-                <a href="#projects" class="nav-tab">在做的事</a>
+                <a href="#blog" class="nav-tab" data-view="blog">博客</a>
+                <a href="#works" class="nav-tab" data-view="works">作品</a>
                 <a href="#contact" class="nav-tab">联系交流</a>
             </div>
         </div>
@@ -37,43 +37,18 @@
         </div>
     </section>
 
-    <section id="thinking">
-        <h2 class="section-title">近期思考</h2>
-        <div class="filter-tabs">
-            <button class="filter-tab active" data-category="博客">博客</button>
-            <button class="filter-tab" data-category="作品集">作品</button>
+    <div id="dynamic-content">
+        <!-- 博客容器（默认显示） -->
+        <div id="blog-posts" class="posts-container">
+            <h2 class="section-title">博客</h2>
+            <div class="articles-grid" id="blog-container"></div>
         </div>
-        <div class="articles-grid" id="articles-container">
-            <!-- 动态生成的文章卡片将在这里显示 -->
+        <!-- 作品容器（初始隐藏） -->
+        <div id="works-posts" class="posts-container" style="display: none;">
+            <h2 class="section-title">作品</h2>
+            <div class="articles-grid" id="works-container"></div>
         </div>
-    </section>
-
-    <section id="projects">
-        <h2 class="section-title">在做的事</h2>
-        <div class="projects-showcase">
-            <div class="project-item">
-                <div class="project-icon">✍️</div>
-                <div class="project-details">
-                    <h3 class="project-title">个人知识管理实验</h3>
-                    <p class="project-desc">尝试用不同方法组织自己的学习和思考笔记，从传统的笔记软件到新的AI工具，寻找最适合自己的方式。</p>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-icon">🔄</div>
-                <div class="project-details">
-                    <h3 class="project-title">数字创作工作流优化</h3>
-                    <p class="project-desc">探索如何把AI工具真正融入到创作过程中，不是替代，而是增强。从选题、构思到修改、发布的全流程。</p>
-                </div>
-            </div>
-            <div class="project-item">
-                <div class="project-icon">🌱</div>
-                <div class="project-details">
-                    <h3 class="project-title">线上社区观察</h3>
-                    <p class="project-desc">参与几个AI和Web3相关的社群，观察不同背景的人如何看待这些技术，记录一些有趣的对话和观点。</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
 
     <section id="contact">
         <h2 class="section-title">联系交流</h2>
