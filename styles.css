@@ -14,8 +14,8 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* 亮色主题 */
-body.theme-light {
+/* 默认主题 */
+body.theme-default {
     --bg-primary: #f8f9fa;
     --bg-secondary: #fff;
     --text-primary: #333;
@@ -25,9 +25,11 @@ body.theme-light {
     --header-bg: #fff;
     --footer-bg: #2c3e50;
     --footer-text: #fff;
+    --code-bg: #f4f4f4;
+    --shadow-color: rgba(0,0,0,0.1);
 }
 
-/* 暗色主题 */
+/* 暗色模式 */
 body.theme-dark {
     --bg-primary: #121212;
     --bg-secondary: #1e1e1e;
@@ -38,6 +40,53 @@ body.theme-dark {
     --header-bg: #1e1e1e;
     --footer-bg: #1a1a1a;
     --footer-text: #b0b0b0;
+    --code-bg: #2d2d2d;
+    --shadow-color: rgba(0,0,0,0.3);
+}
+
+/* 复古风格（Windows/CMD风格） */
+body.theme-retro {
+    --bg-primary: #000;
+    --bg-secondary: #000;
+    --text-primary: #0f0;
+    --text-secondary: #0a0;
+    --accent-color: #0f0;
+    --border-color: #0f0;
+    --header-bg: #000;
+    --footer-bg: #000;
+    --footer-text: #0f0;
+    --code-bg: #000;
+    --shadow-color: rgba(0,255,0,0.2);
+}
+
+body.theme-retro {
+    font-family: 'Courier New', monospace;
+    background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(0,255,0,0.05) 25%, rgba(0,255,0,0.05) 26%, transparent 27%, transparent 74%, rgba(0,255,0,0.05) 75%, rgba(0,255,0,0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(0,255,0,0.05) 25%, rgba(0,255,0,0.05) 26%, transparent 27%, transparent 74%, rgba(0,255,0,0.05) 75%, rgba(0,255,0,0.05) 76%, transparent 77%, transparent);
+    background-size: 8px 8px;
+}
+
+/* AI主题 */
+body.theme-ai {
+    --bg-primary: #0a1929;
+    --bg-secondary: #112538;
+    --text-primary: #e6f1ff;
+    --text-secondary: #91c1ff;
+    --accent-color: #00d4ff;
+    --border-color: #1e3a5f;
+    --header-bg: #112538;
+    --footer-bg: #0a1929;
+    --footer-text: #91c1ff;
+    --code-bg: #1e3a5f;
+    --shadow-color: rgba(0,212,255,0.2);
+}
+
+body.theme-ai {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(0,212,255,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(0,212,255,0.05) 0%, transparent 50%);
+    background-attachment: fixed;
 }
 
 /* 应用主题变量 */
@@ -57,8 +106,9 @@ body {
 header {
     background-color: var(--header-bg);
     padding: 40px 0;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-top {
@@ -73,12 +123,14 @@ header h1 {
     font-weight: 700;
     margin-bottom: 10px;
     color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 header p {
     font-size: 1.1rem;
     color: var(--text-secondary);
     margin-bottom: 30px;
+    transition: color 0.3s ease;
 }
 
 /* 主题切换器样式 */
@@ -99,6 +151,7 @@ header p {
 
 #theme-select:hover {
     border-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--shadow-color);
 }
 
 /* 分类导航样式 */
@@ -136,12 +189,14 @@ header p {
     background-color: var(--bg-secondary);
     color: var(--text-primary);
     border-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--shadow-color);
 }
 
 .category-nav a.active {
     background-color: var(--accent-color);
     color: #fff;
     border-color: var(--accent-color);
+    box-shadow: 0 0 8px var(--shadow-color);
 }
 
 /* 主要内容样式 */
@@ -154,6 +209,7 @@ main {
     text-align: center;
     padding: 60px 0;
     color: var(--text-secondary);
+    transition: color 0.3s ease;
 }
 
 /* 文章列表样式 */
@@ -167,13 +223,13 @@ main {
     margin-bottom: 30px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px var(--shadow-color);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .post-item:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .post-title {
@@ -181,12 +237,14 @@ main {
     font-weight: 600;
     margin-bottom: 15px;
     color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 .post-date {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin-bottom: 20px;
+    transition: color 0.3s ease;
 }
 
 .post-excerpt {
@@ -194,6 +252,7 @@ main {
     color: var(--text-secondary);
     margin-bottom: 20px;
     line-height: 1.7;
+    transition: color 0.3s ease;
 }
 
 .post-link {
@@ -204,11 +263,12 @@ main {
     text-decoration: none;
     border-radius: 4px;
     font-weight: 500;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .post-link:hover {
     opacity: 0.9;
+    box-shadow: 0 0 8px var(--shadow-color);
 }
 
 /* 页脚样式 */
@@ -218,6 +278,7 @@ footer {
     padding: 40px 0;
     text-align: center;
     transition: background-color 0.3s ease, color 0.3s ease;
+    border-top: 1px solid var(--border-color);
 }
 
 footer p {
@@ -296,7 +357,7 @@ footer p {
     padding: 40px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px var(--shadow-color);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
@@ -309,6 +370,7 @@ footer p {
     font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text-primary);
+    transition: color 0.3s ease;
 }
 
 .post-detail .post-content p {
@@ -327,6 +389,7 @@ footer p {
     text-align: center;
     padding: 60px 0;
     color: var(--text-secondary);
+    transition: color 0.3s ease;
 }
 
 /* 文章分类标签 */
@@ -390,4 +453,81 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-secondary);
+}
+
+/* 复古风格特殊样式 */
+body.theme-retro header,
+body.theme-retro .post-item,
+body.theme-retro .post-detail {
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+}
+
+body.theme-retro .post-link {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+body.theme-retro .post-link:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+/* AI主题特殊样式 */
+body.theme-ai header,
+body.theme-ai .post-item,
+body.theme-ai .post-detail {
+    border: 1px solid rgba(0,212,255,0.3);
+}
+
+body.theme-ai .post-link {
+    background-color: rgba(0,212,255,0.1);
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+body.theme-ai .post-link:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+}
+
+/* 打字机效果（复古风格） */
+body.theme-retro .loading {
+    font-family: 'Courier New', monospace;
+    position: relative;
+}
+
+body.theme-retro .loading::after {
+    content: '_';
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* AI主题加载效果 */
+body.theme-ai .loading {
+    position: relative;
+}
+
+body.theme-ai .loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    margin: -20px 0 0 -20px;
+    border: 2px solid var(--border-color);
+    border-top: 2px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
