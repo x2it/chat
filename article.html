@@ -223,6 +223,12 @@
                         coverImage = `<img src="${fields.封面[0].url}" alt="${fields.标题 || '封面'}" style="max-width:100%; height:auto; margin-bottom: 1.5rem;">`;
                     }
                     
+                    // 保存文章数据到全局变量
+                    window.currentArticle = {
+                        title: fields.标题 || '无标题',
+                        content: fields.内容 || ''
+                    };
+                    
                     container.innerHTML = `
                         ${coverImage}
                         <h1>${fields.标题 || '无标题'}</h1>
@@ -230,10 +236,45 @@
                             <span>发布时间：${formatDate(fields.发布时间)}</span>
                             ${fields.分类 ? `<span style="margin-left: 1.5rem;">分类：${fields.分类}</span>` : ''}
                         </div>
+                        <div style="margin-bottom: 2rem;">
+                            <button id="downloadMdBtn" style="background: transparent; border: none; color: var(--primary-color); text-decoration: none; font-weight: bold; cursor: pointer; font-size: 1rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                                📥 下载 Markdown
+                            </button>
+                        </div>
                         <div class="article-body">
                             ${contentHtml}
                         </div>
                     `;
+                    
+                    // 添加下载按钮点击事件
+                    document.getElementById('downloadMdBtn').addEventListener('click', function() {
+                        if (!window.currentArticle) {
+                            alert('暂无文章数据');
+                            return;
+                        }
+                        
+                        const { title, content } = window.currentArticle;
+                        
+                        // 生成文件名：将标题中的非法字符替换为下划线
+                        const fileName = title.replace(/[\\/:*?"<>|]/g, '_') + '.md';
+                        
+                        // 创建 Blob
+                        const blob = new Blob([content], { type: 'text/markdown' });
+                        
+                        // 生成下载链接
+                        const url = URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.href = url;
+                        a.download = fileName;
+                        
+                        // 模拟点击下载
+                        document.body.appendChild(a);
+                        a.click();
+                        document.body.removeChild(a);
+                        
+                        // 释放 URL 对象
+                        URL.revokeObjectURL(url);
+                    });
                 } catch (error) {
                     console.error('加载文章失败:', error);
                     container.innerHTML = `
