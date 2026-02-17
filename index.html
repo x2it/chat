@@ -6,10 +6,19 @@
     <title>Davi's blog</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="theme-light">
     <header>
         <div class="container">
-            <h1>Davi's blog</h1>
+            <div class="header-top">
+                <h1>Davi's blog</h1>
+                <div class="theme-switcher">
+                    <select id="theme-select">
+                        <option value="light">亮色主题</option>
+                        <option value="dark">暗色主题</option>
+                        <option value="auto">跟随系统</option>
+                    </select>
+                </div>
+            </div>
             <p>动态内容管理系统</p>
             <nav class="category-nav">
                 <ul>

@@ -10,8 +10,54 @@ class FeishuTableManager {
     init() {
         this.loadContent();
         this.bindCategoryEvents();
+        this.initThemeSwitcher();
         // 每5分钟自动刷新一次
         setInterval(() => this.loadContent(), 5 * 60 * 1000);
+    }
+
+    // 初始化主题切换器
+    initThemeSwitcher() {
+        const themeSelect = document.getElementById('theme-select');
+        
+        // 从本地存储加载主题设置
+        const savedTheme = localStorage.getItem('blog-theme');
+        if (savedTheme) {
+            this.setTheme(savedTheme);
+            themeSelect.value = savedTheme;
+        } else {
+            // 默认使用亮色主题
+            this.setTheme('light');
+        }
+        
+        // 绑定主题切换事件
+        themeSelect.addEventListener('change', (e) => {
+            const theme = e.target.value;
+            this.setTheme(theme);
+            localStorage.setItem('blog-theme', theme);
+        });
+        
+        // 监听系统主题变化
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            const currentTheme = localStorage.getItem('blog-theme');
+            if (currentTheme === 'auto') {
+                this.updateAutoTheme();
+            }
+        });
+    }
+
+    // 设置主题
+    setTheme(theme) {
+        if (theme === 'auto') {
+            this.updateAutoTheme();
+        } else {
+            document.body.className = `theme-${theme}`;
+        }
+    }
+
+    // 更新自动主题
+    updateAutoTheme() {
+        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.body.className = isDarkMode ? 'theme-dark' : 'theme-light';
     }
 
     // 绑定分类导航事件
